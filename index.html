@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emberline Studios</title>
+<meta name="description" content="Emberline Studios — a Zambian creative studio and design house. Enter the studio for comics, animation and film, or work with us for branding and design services.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --ember: #F5A623;
+    --deep-red: #8B0000;
+    --crimson: #C0392B;
+    --white: #FFFFFF;
+    --off-white: #F0EDE8;
+    --gray: #1a1a1a;
+    --gray-mid: #2a2a2a;
+    --gray-text: #888880;
+    --steel: #3A6EA5;
+    --steel-deep: #1F3A5F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Crimson Pro', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    padding: 3.5rem 1.5rem 2rem;
+  }
+  .mark {
+    font-size: 1.6rem;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    letter-spacing: 0.06em;
+    margin-top: 0.4rem;
+  }
+  .tagline {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-top: 0.6rem;
+  }
+  main.split {
+    flex: 1;
+    display: flex;
+    min-height: 480px;
+  }
+  @media (max-width: 720px) {
+    main.split { flex-direction: column; min-height: unset; }
+    .panel { min-height: 46vh; }
+  }
+  .panel {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--white);
+    overflow: hidden;
+    cursor: pointer;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  @media (max-width: 720px) {
+    .panel { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  }
+  .panel:last-child { border-right: none; border-bottom: none; }
+
+  .bgcarousel {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .panel.revealed .bgcarousel,
+  .panel:hover .bgcarousel {
+    opacity: 0.55;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease;
+  }
+  .slide.active { opacity: 1; }
+
+  /* Placeholder art — swap these background-colors for real cover/flyer
+     images (background-image: url(...)) when wiring up the final assets */
+  #studio-panel .slide:nth-child(1) { background-color: var(--deep-red); }
+  #studio-panel .slide:nth-child(2) { background-color: var(--crimson); }
+  #studio-panel .slide:nth-child(3) { background-color: #5a1509; }
+
+  #creatives-panel .slide:nth-child(1) { background-color: var(--steel); }
+  #creatives-panel .slide:nth-child(2) { background-color: var(--steel-deep); }
+  #creatives-panel .slide:nth-child(3) { background-color: #14273f; }
+
+  .panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.55));
+    z-index: 1;
+  }
+
+  .panel-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .panel-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 0.6rem;
+  }
+  .panel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    letter-spacing: 0.04em;
+  }
+  .panel-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.72);
+    margin-top: 0.5rem;
+  }
+  .panel-tap-hint {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .panel.revealed .panel-tap-hint { opacity: 1; }
+  @media (min-width: 721px) {
+    .panel-tap-hint { display: none; }
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--gray-text);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="mark">🔥</div>
+    <h1>Emberline Studios</h1>
+    <div class="tagline">Zambian manga is real</div>
+  </header>
+
+  <main class="split">
+    <a href="studio.html" class="panel" id="studio-panel">
+      <div class="bgcarousel">
+        <div class="slide active"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+      </div>
+      <div class="panel-content">
+        <div class="panel-eyebrow">Comics · Animation · Film</div>
+        <div class="panel-title">Studio</div>
+        <div class="panel-sub">Moonlight, Escaping Lusaka &amp; the worlds we're building</div>
+        <div class="panel-tap-hint">Tap again to enter</div>
+      </div>
+    </a>
+
+    <a href="creatives.html" class="panel" id="creatives-panel">
+      <div class="bgcarousel">
+        <div class="slide active"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+      </div>
+      <div class="panel-content">
+        <div class="panel-eyebrow">Branding · Design · Print</div>
+        <div class="panel-title">Creatives</div>
+        <div class="panel-sub">Design work for brands, businesses &amp; organisations</div>
+        <div class="panel-tap-hint">Tap again to enter</div>
+      </div>
+    </a>
+  </main>
+
+  <footer>© 2026 Emberline Studios Limited. Registered in Zambia.</footer>
+</div>
+
+<script>
+(function () {
+  var isTouch = window.matchMedia('(hover: none)').matches;
+  var panels = document.querySelectorAll('.panel');
+
+  panels.forEach(function (panel) {
+    var slides = panel.querySelectorAll('.slide');
+    var idx = 0;
+    var timer = null;
+
+    function startCycle() {
+      stopCycle();
+      timer = setInterval(function () {
+        slides[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
+      }, 1400);
+    }
+    function stopCycle() {
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    if (isTouch) {
+      // First tap: reveal the carousel and stop there.
+      // Second tap: let the link navigate as normal.
+      panel.addEventListener('click', function (e) {
+        if (!panel.classList.contains('revealed')) {
+          e.preventDefault();
+          panel.classList.add('revealed');
+          startCycle();
+        }
+      });
+    } else {
+      panel.addEventListener('mouseenter', startCycle);
+      panel.addEventListener('mouseleave', stopCycle);
+      // Desktop click always navigates immediately — no interception needed.
+    }
+  });
+})();
+</script>
+</body>
+</html>
