@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emberline Creatives — Design &amp; Branding</title>
-<meta name="description" content="Emberline Creatives is the design and branding arm of Emberline Studios — branding, print collateral, document design and internal communications for Zambian businesses.">
+<meta name="description" content="Emberline Creatives is the design and branding arm of Emberline Studios — branding, print collateral, motion design, document design and internal communications for Zambian businesses.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -17,6 +17,8 @@
     --gray-text: #8a8e96;
     --ember: #F5A623;
     --gold-light: #FFD37A;
+    --deep-red: #8B0000;
+    --crimson: #C0392B;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -60,7 +62,7 @@
   }
   .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     list-style: none;
   }
   .nav-links a {
@@ -83,15 +85,16 @@
     padding: 0.5rem 1.2rem;
     text-decoration: none;
     transition: background 0.2s;
+    white-space: nowrap;
   }
   .nav-cta:hover { background: var(--ember); }
 
-  @media (max-width: 720px) {
+  @media (max-width: 900px) {
     nav { padding: 1rem 1.25rem; }
     .nav-links { display: none; }
   }
 
-  section { padding: 6rem 1.5rem 4rem; max-width: 1000px; margin: 0 auto; }
+  section { padding: 6rem 1.5rem 4rem; max-width: 1100px; margin: 0 auto; }
 
   .hero {
     padding-top: 9rem;
@@ -131,17 +134,18 @@
     text-transform: uppercase;
     text-decoration: none;
     padding: 0.85rem 1.6rem;
+    display: inline-block;
   }
-  .btn-primary { background: var(--gold-light); color: var(--black); }
-  .btn-primary:hover { background: var(--ember); }
-  .btn-ghost { border: 1px solid rgba(255,255,255,0.25); color: var(--white); }
+  .btn-primary { background: var(--gold-light); color: var(--black); border: 1px solid var(--gold-light); }
+  .btn-primary:hover { background: var(--ember); border-color: var(--ember); }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.25); color: var(--white); background: transparent; }
   .btn-ghost:hover { border-color: var(--gold-light); color: var(--gold-light); }
 
   h2 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(1.6rem, 4vw, 2.2rem);
     letter-spacing: 0.03em;
-    margin-bottom: 2rem;
+    margin-bottom: 0.75rem;
   }
   .section-eyebrow {
     font-family: 'Space Mono', monospace;
@@ -151,10 +155,17 @@
     color: var(--gray-text);
     margin-bottom: 0.5rem;
   }
+  .section-intro {
+    color: var(--off-white);
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+    font-size: 1.02rem;
+  }
 
+  /* SERVICES */
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 1.5rem;
   }
   .service-card {
@@ -174,6 +185,99 @@
     font-size: 0.98rem;
   }
 
+  /* PRICING */
+  .pricing-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+  .pricing-card {
+    background: var(--gray);
+    border: 1px solid rgba(245,166,35,0.15);
+    padding: 2rem;
+  }
+  .pricing-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(245,166,35,0.25);
+  }
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .price-row:last-child { border-bottom: none; }
+  .price-row-label {
+    font-size: 0.98rem;
+    color: var(--white);
+  }
+  .price-row-note {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    color: var(--gray-text);
+    margin-top: 0.25rem;
+    text-transform: none;
+  }
+  .price-row-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    white-space: nowrap;
+    text-align: right;
+  }
+  .price-row-value .from {
+    font-size: 0.62rem;
+    color: var(--gray-text);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-right: 0.3rem;
+  }
+  .price-tiers {
+    margin-top: 0.4rem;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(245,166,35,0.2);
+  }
+  .price-tier-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding: 0.3rem 0;
+    color: var(--off-white);
+  }
+  .price-tier-row span:last-child {
+    font-family: 'Space Mono', monospace;
+    color: var(--gold-light);
+    font-size: 0.8rem;
+  }
+  .pricing-footnote {
+    font-size: 0.85rem;
+    color: var(--gray-text);
+    margin-top: 1.5rem;
+    max-width: 640px;
+  }
+
+  /* WORK */
+  .work-category { margin-bottom: 3.5rem; }
+  .work-category:last-child { margin-bottom: 0; }
+  .work-category-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
   .work-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -186,14 +290,24 @@
   }
   .work-thumb {
     height: 160px;
-    background: linear-gradient(135deg, #8B0000, #F5A623);
-    /* Placeholder — swap for real project imagery */
+    background-size: cover;
+    background-position: center;
+    /* Placeholder gradients below — swap each for
+       background-image: url("images/<slug>.png") once uploaded */
   }
+  .work-thumb.tone-a { background: linear-gradient(135deg, #8B0000, #F5A623); }
+  .work-thumb.tone-b { background: linear-gradient(135deg, #5a1509, #C0392B); }
+  .work-thumb.tone-c { background: linear-gradient(135deg, #3a1000, #8B0000); }
   .work-body { padding: 1.25rem 1.5rem 1.5rem; }
   .work-body h3 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.2rem;
     letter-spacing: 0.03em;
+  }
+  .work-body p {
+    font-size: 0.9rem;
+    color: var(--off-white);
+    margin-top: 0.4rem;
   }
   .work-tag {
     font-family: 'Space Mono', monospace;
@@ -201,7 +315,7 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--gray-text);
-    margin-top: 0.4rem;
+    margin-top: 0.6rem;
   }
 
   .contact-section {
@@ -227,6 +341,7 @@
   <a href="creatives.html" class="nav-logo">Emberline Creatives</a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -236,7 +351,7 @@
 <section class="hero">
   <div class="eyebrow">Design &amp; Branding</div>
   <h1>Design that carries your name well.</h1>
-  <p>The client-facing design arm of Emberline Studios — branding, print collateral, document design and internal communications, built with the same craft that goes into our comics.</p>
+  <p>The client-facing design arm of Emberline Studios — branding, print collateral, motion design, document design and internal communications, built with the same craft that goes into our comics.</p>
   <div class="hero-actions">
     <a href="#work" class="btn-primary">See the work</a>
     <a href="#contact" class="btn-ghost">Start a project</a>
@@ -253,7 +368,19 @@
     </div>
     <div class="service-card">
       <h3>Print collateral</h3>
-      <p>Stationery, brochures, banners and event materials, designed and print-ready.</p>
+      <p>Stationery, brochures, banners, flyers and event materials, designed and print-ready.</p>
+    </div>
+    <div class="service-card">
+      <h3>Social &amp; digital design</h3>
+      <p>Posters, ad creative and campaign assets built for the feed, from single posts to full rollouts.</p>
+    </div>
+    <div class="service-card">
+      <h3>Motion &amp; animation</h3>
+      <p>Logo animations, motion graphics and 3D work that bring a brand to life beyond the still frame.</p>
+    </div>
+    <div class="service-card">
+      <h3>Explainer &amp; product video</h3>
+      <p>Short-form explainer videos and video editing that turn a concept or a product into a clear story.</p>
     </div>
     <div class="service-card">
       <h3>Document design</h3>
@@ -263,25 +390,283 @@
       <h3>Internal comms</h3>
       <p>Newsletters, announcements and campaign materials for teams and organisations.</p>
     </div>
+    <div class="service-card">
+      <h3>Illustration &amp; art commissions</h3>
+      <p>Custom illustration work, from single pieces to fuller commissioned art.</p>
+    </div>
   </div>
+</section>
+
+<section id="pricing">
+  <div class="section-eyebrow">Rates</div>
+  <h2>Pricing</h2>
+  <p class="section-intro">Starting rates for our most-requested work. Every project is scoped before we begin — get in touch for a quote tailored to what you need.</p>
+
+  <div class="pricing-groups">
+    <div class="pricing-card">
+      <div class="pricing-card-title">Design</div>
+
+      <div class="price-row">
+        <div class="price-row-label">General Design
+          <span class="price-row-note">Flyers, posters, banners, social media graphics</span>
+        </div>
+        <div class="price-row-value">K500</div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">Social Media Post
+          <span class="price-row-note">Or 5 posts for K1,200</span>
+        </div>
+        <div class="price-row-value">K300 <span style="font-size:0.7rem;color:var(--gray-text);">each</span></div>
+      </div>
+
+      <div style="padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+        <div class="price-row-label" style="margin-bottom: 0.3rem;">Logo Design</div>
+        <div class="price-tiers">
+          <div class="price-tier-row"><span>Basic</span><span>K800</span></div>
+          <div class="price-tier-row"><span>Complex</span><span>K1,500</span></div>
+          <div class="price-tier-row"><span>Illustrated</span><span>K2,500</span></div>
+        </div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">Brand Manual</div>
+        <div class="price-row-value"><span class="from">From</span>K4,000</div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">Illustration</div>
+        <div class="price-row-value"><span class="from">From</span>K800</div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">Art Commission</div>
+        <div class="price-row-value"><span class="from">From</span>K1,500</div>
+      </div>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-card-title">Motion &amp; Video</div>
+
+      <div class="price-row">
+        <div class="price-row-label">Motion Graphic
+          <span class="price-row-note">Text / image-based</span>
+        </div>
+        <div class="price-row-value"><span class="from">From</span>K800</div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">Logo Animation</div>
+        <div class="price-row-value">K1,200</div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">3D Logo Animation</div>
+        <div class="price-row-value">K2,000</div>
+      </div>
+
+      <div style="padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+        <div class="price-row-label" style="margin-bottom: 0.3rem;">Explainer Videos</div>
+        <div class="price-tiers">
+          <div class="price-tier-row"><span>30 sec</span><span>K2,500</span></div>
+          <div class="price-tier-row"><span>60 sec</span><span>K4,000</span></div>
+        </div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">Video Editing</div>
+        <div class="price-row-value"><span class="from">From</span>K2,000</div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">3D Product Model</div>
+        <div class="price-row-value"><span class="from">From</span>K7,000</div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">Character Animation</div>
+        <div class="price-row-value"><span class="from">From</span>K7,000</div>
+      </div>
+
+      <div class="price-row">
+        <div class="price-row-label">3D Animation</div>
+        <div class="price-row-value"><span class="from">From</span>K7,000</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="pricing-footnote">Prices in Zambian Kwacha (ZMW). "From" pricing reflects project scope and complexity — final quotes are confirmed after a short brief.</p>
 </section>
 
 <section id="work">
   <div class="section-eyebrow">Selected projects</div>
   <h2>Highlighted work</h2>
-  <div class="work-grid">
-    <div class="work-card">
-      <div class="work-thumb"></div>
-      <div class="work-body">
-        <h3>Axis Pro Services</h3>
-        <div class="work-tag">Branding · Stationery</div>
+  <p class="section-intro">A cross-section of branding, campaign and document work — for corporate clients, small businesses and internal programmes alike.</p>
+
+  <div class="work-category">
+    <div class="work-category-title">Branding &amp; Identity</div>
+    <div class="work-grid">
+      <div class="work-card">
+        <!-- images/axis-pro-services.png -->
+        <div class="work-thumb tone-a"></div>
+        <div class="work-body">
+          <h3>Axis Pro Services</h3>
+          <p>Full brand foundation and company profile for an integrated automotive solutions company.</p>
+          <div class="work-tag">Branding · Stationery · Company Profile</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/lsk-clothing.png -->
+        <div class="work-thumb tone-b"></div>
+        <div class="work-body">
+          <h3>LSK Clothing</h3>
+          <p>Logo and brand identity for a Lusaka-rooted clothing label.</p>
+          <div class="work-tag">Logo · Brand Identity</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/richkay-innovations.png -->
+        <div class="work-thumb tone-c"></div>
+        <div class="work-body">
+          <h3>RichKay Innovations &amp; Services</h3>
+          <p>Logo design for a business services and innovation company.</p>
+          <div class="work-tag">Logo Design</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/line-linary.png -->
+        <div class="work-thumb tone-a"></div>
+        <div class="work-body">
+          <h3>Line Linary</h3>
+          <p>Logo design built around a clean monogram mark.</p>
+          <div class="work-tag">Logo Design</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/euannas-pride.png -->
+        <div class="work-thumb tone-b"></div>
+        <div class="work-body">
+          <h3>Euanna's Pride</h3>
+          <p>Logo and brand identity design.</p>
+          <div class="work-tag">Logo · Brand Identity</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/glam-dynasty.png -->
+        <div class="work-thumb tone-c"></div>
+        <div class="work-body">
+          <h3>Glam Dynasty</h3>
+          <p>Logo design for a beauty and fashion retail brand.</p>
+          <div class="work-tag">Logo Design</div>
+        </div>
       </div>
     </div>
-    <div class="work-card">
-      <div class="work-thumb"></div>
-      <div class="work-body">
-        <h3>Coming soon</h3>
-        <div class="work-tag">More case studies in progress</div>
+  </div>
+
+  <div class="work-category">
+    <div class="work-category-title">Campaigns &amp; Print</div>
+    <div class="work-grid">
+      <div class="work-card">
+        <!-- images/muvi-satellite-decoder-campaign.png -->
+        <div class="work-thumb tone-a"></div>
+        <div class="work-body">
+          <h3>Muvi Satellite Decoder Campaign</h3>
+          <p>Flyers, banners and print materials for a major decoder promotional campaign, plus ongoing print work for sister brand Fresh View Cinemas.</p>
+          <div class="work-tag">Print Design · Campaign</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/crispy-fresh-foods.png -->
+        <div class="work-thumb tone-b"></div>
+        <div class="work-body">
+          <h3>Crispy Fresh Foods &amp; Smokes</h3>
+          <p>Print design for a fast-food brand.</p>
+          <div class="work-tag">Print Design</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/mba-collateral-loans.png -->
+        <div class="work-thumb tone-c"></div>
+        <div class="work-body">
+          <h3>MBA Collateral Loans</h3>
+          <p>Flyer design for a financial services provider.</p>
+          <div class="work-tag">Print Design</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/seedco-ku-farm.png -->
+        <div class="work-thumb tone-a"></div>
+        <div class="work-body">
+          <h3>Seed Co — Ku Farm</h3>
+          <p>Social and print campaign design for an agricultural brand.</p>
+          <div class="work-tag">Social &amp; Print Design</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-category">
+    <div class="work-category-title">Social &amp; Advertising Campaigns</div>
+    <div class="work-grid">
+      <div class="work-card">
+        <!-- images/muvi-satellite-world-cup.png -->
+        <div class="work-thumb tone-b"></div>
+        <div class="work-body">
+          <h3>World Cup Countdown Campaign</h3>
+          <p>A 10-day social media countdown campaign built for the Qatar World Cup.</p>
+          <div class="work-tag">Social Media Ads</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/covid-19-awareness.png -->
+        <div class="work-thumb tone-c"></div>
+        <div class="work-body">
+          <h3>COVID-19 Public Health Campaign</h3>
+          <p>Dual-purpose social and print awareness content produced during the pandemic.</p>
+          <div class="work-tag">Social &amp; Print Design</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/moonlight-social-ads.png -->
+        <div class="work-thumb tone-a"></div>
+        <div class="work-body">
+          <h3>Moonlight — Social Ads</h3>
+          <p>Social media ad creative for our own comic, Moonlight.</p>
+          <div class="work-tag">Social Media Ads</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-category">
+    <div class="work-category-title">Corporate &amp; Internal Communications</div>
+    <div class="work-grid">
+      <div class="work-card">
+        <!-- images/netone-newsletter.png -->
+        <div class="work-thumb tone-b"></div>
+        <div class="work-body">
+          <h3>NetOne Monthly Newsletter</h3>
+          <p>Ongoing design and production of a recurring company-wide internal newsletter.</p>
+          <div class="work-tag">Internal Comms · Document Design</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/netone-foundation-safeguarding.png -->
+        <div class="work-thumb tone-c"></div>
+        <div class="work-body">
+          <h3>NetOne Foundation Safeguarding Suite</h3>
+          <p>A full branded document suite — frameworks, policies, SOPs and training materials — built around a consistent visual system.</p>
+          <div class="work-tag">Document Design · Brand System</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <!-- images/netone-group-branding.png -->
+        <div class="work-thumb tone-a"></div>
+        <div class="work-body">
+          <h3>NetOne Group Branded Materials</h3>
+          <p>Branded letterheads and presentation decks across NetOne Foundation, DigiFin, Swish, NData and Project Digitize.</p>
+          <div class="work-tag">Document Design · Presentations</div>
+        </div>
       </div>
     </div>
   </div>
