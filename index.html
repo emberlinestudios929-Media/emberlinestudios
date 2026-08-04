@@ -178,6 +178,16 @@
     letter-spacing: 0.1em;
     color: var(--gray-text);
   }
+  .footer-social {
+  margin-top: 0.6rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.footer-social a { color: var(--ember); text-decoration: none; opacity: 0.8; transition: opacity 0.2s; }
+.footer-social a:hover { opacity: 1; }
+.footer-social span { color: rgba(255,255,255,0.2); }
+  
 </style>
 </head>
 <body>
@@ -225,7 +235,14 @@
     </a>
   </main>
 
-  <footer>© 2026 Emberline Studios Limited. Registered in Zambia.</footer>
+  <footer>
+  &copy; 2026 Emberline Studios Limited. Registered in Zambia.
+  <div class="footer-social">
+    <a href="https://wa.me/260963091467" target="_blank" rel="noopener">WhatsApp</a>
+    <span>&middot;</span>
+    <a href="https://www.instagram.com/emberlinestudios_comics/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
 </div>
 
 <script>
