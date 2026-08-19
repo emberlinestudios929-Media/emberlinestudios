@@ -382,45 +382,133 @@
     gap: 1px;
     background: rgba(139,0,0,0.15);
   }
+
+  /* Poster-first project cards. Each is a background-image poster with a
+     minimal title at rest; hovering (or, on touch, a first tap) darkens
+     and zooms the art and reveals the synopsis, tag and a link into the
+     project. Swap each .project-poster-<slug> background-image below for
+     real cover/still art (images/<slug>.png) as it becomes available —
+     cards without art yet fall back to a gradient in the project's own
+     accent tone so the grid still reads as intentional, not broken. */
   .project-card {
-    background: var(--black);
-    padding: 2.5rem;
-    transition: background 0.3s;
     position: relative;
+    aspect-ratio: 3 / 4;
     overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    background: var(--gray-mid);
   }
-  .project-card::before {
-    content: '';
+  .project-poster {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--ember);
-    transform: scaleX(0);
-    transition: transform 0.3s;
-    transform-origin: left;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1);
+    filter: brightness(0.62);
+    transition: transform 0.6s ease, filter 0.5s ease;
   }
-  .project-card:hover { background: rgba(139,0,0,0.06); }
-  .project-card:hover::before { transform: scaleX(1); }
+  .project-card:hover .project-poster,
+  .project-card.revealed .project-poster {
+    transform: scale(1.07);
+    filter: brightness(0.4);
+  }
+  .project-tint {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    mix-blend-mode: multiply;
+    transition: opacity 0.5s ease;
+  }
+  .project-card:hover .project-tint,
+  .project-card.revealed .project-tint {
+    opacity: 0.55;
+  }
+  .project-poster-escaping { background-color: #1a0503; background-image: url("images/escaping.png"); }
+  .project-poster-gods { background: linear-gradient(160deg, #23263f, #10111d); }
+  .project-poster-great-expectations {  background-image: url("images/great.png"); }
+  .project-poster-tapped-in { background: linear-gradient(160deg, #4a0e35, #1c0714); }
+  .project-poster-black-corvette { background: linear-gradient(160deg, #0e3a3f, #061516); }
+  .project-poster-adams-world { background-image: url("images/adams-world.png"); }
+  .project-poster-blazing { background-image: url("images/blazing.png"); }
+  .project-poster-blazing { background-image: url("images/fantasia.png"); }
+  .tint-escaping { background: #8B0000; }
+  .tint-gods { background: #3a3c78; }
+  .tint-great-expectations { background: #785a28; }
+  .tint-tapped-in { background: #b41e78; }
+  .tint-black-corvette { background: #146e78; }
+  .tint-adams-world { background: #5a2896; }
+
+  .project-minimal {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 1.5rem;
+    z-index: 2;
+    transition: opacity 0.35s ease;
+  }
+  .project-card:hover .project-minimal,
+  .project-card.revealed .project-minimal {
+    opacity: 0;
+  }
+  .project-minimal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  }
+
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.75rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
+  }
+  .project-card:hover .project-overlay,
+  .project-card.revealed .project-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
   .project-type {
     font-family: 'Space Mono', monospace;
     font-size: 0.52rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ember);
-    margin-bottom: 1rem;
+    margin-bottom: 0.7rem;
   }
   .project-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2rem;
     letter-spacing: 0.03em;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
     line-height: 1;
   }
   .project-desc {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.65;
-    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.55;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .project-view-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-top: 0.3rem;
   }
   .project-status {
     font-family: 'Space Mono', monospace;
@@ -866,42 +954,97 @@
       <h2 class="section-title">The Universe</h2>
     </div>
     <div class="projects-grid reveal">
+
+      <a href="escaping-lusaka.html" class="project-card" data-touch-link="1">
+        <div class="project-poster project-poster-escaping"></div>
+        <div class="project-tint tint-escaping"></div>
+        <div class="project-minimal"><p class="project-minimal-title">Escaping Lusaka</p></div>
+        <div class="project-overlay">
+          <p class="project-type">Comic · One Shot</p>
+          <h3 class="project-name">Escaping Lusaka</h3>
+          <p class="project-desc">An ancient Zambian deity, the Chikishikishi, rises to reclaim its land. Journalist Maya and ex-engineer Chola stand between two worlds.</p>
+          <span class="project-view-link">View Project &rarr;</span>
+        </div>
+      </a>
+
       <div class="project-card">
-        <p class="project-type">Comic · One Shot</p>
-        <h3 class="project-name"><a href="escaping-lusaka.html" style="color:inherit;text-decoration:none;">Escaping Lusaka</a></h3>
-        <p class="project-desc">An Of Gods and Of Monsters Story. An ancient Zambian deity, the Chikishikishi, rises to reclaim its land. Journalist Maya and ex-engineer Chola stand between two worlds.</p>
-        <div class="project-status"><span class="status-dot active"></span><span style="color:var(--ember)">In Production</span></div>
+        <div class="project-poster project-poster-gods"></div>
+        <div class="project-tint tint-gods"></div>
+        <div class="project-minimal"><p class="project-minimal-title">Of Gods &amp; Of Monsters</p></div>
+        <div class="project-overlay">
+          <p class="project-type">Comic · Universe</p>
+          <h3 class="project-name">Of Gods &amp; Of Monsters</h3>
+          <p class="project-desc">A universe of standalone one-shot comics rooted in African mythology and modern life. Each story stands alone.</p>
+        </div>
       </div>
+
+      <a href="great-expectations.html" class="project-card" data-touch-link="1">
+        <div class="project-poster project-poster-great-expectations"></div>
+        <div class="project-tint tint-great-expectations"></div>
+        <div class="project-minimal"><p class="project-minimal-title">Great Expectations</p></div>
+        <div class="project-overlay">
+          <p class="project-type">Short Film</p>
+          <h3 class="project-name">Great Expectations</h3>
+          <p class="project-desc">Mukuka is a musician drowning in the rat race — 15 minutes on passion, purpose, and the cost of forgetting who you are.</p>
+          <span class="project-view-link">View Project &rarr;</span>
+        </div>
+      </a>
+
       <div class="project-card">
-        <p class="project-type">Comic · Universe</p>
-        <h3 class="project-name">Of Gods &amp; Of Monsters</h3>
-        <p class="project-desc">A universe of standalone one-shot comics rooted in African mythology and modern life. Each story stands alone. Every story connects.</p>
-        <div class="project-status"><span class="status-dot active"></span><span style="color:var(--ember)">Developing</span></div>
+        <div class="project-poster project-poster-tapped-in"></div>
+        <div class="project-tint tint-tapped-in"></div>
+        <div class="project-minimal"><p class="project-minimal-title">Tapped In</p></div>
+        <div class="project-overlay">
+          <p class="project-type">TV / YouTube</p>
+          <h3 class="project-name">Tapped In</h3>
+          <p class="project-desc">Film, music, fashion, tech and gaming. Co-created with Spaceprogram — launching on YouTube before going to broadcast.</p>
+        </div>
       </div>
+
       <div class="project-card">
-        <p class="project-type">Short Film</p>
-        <h3 class="project-name"><a href="great-expectations.html" style="color:inherit;text-decoration:none;">Great Expectations</a></h3>
-        <p class="project-desc">Mukuka is a musician drowning in the rat race. A 15-minute short film about passion, purpose, and the cost of forgetting who you are.</p>
-        <div class="project-status"><span class="status-dot active"></span><span style="color:var(--ember)">In Production</span></div>
+        <div class="project-poster project-poster-black-corvette"></div>
+        <div class="project-tint tint-black-corvette"></div>
+        <div class="project-minimal"><p class="project-minimal-title">Black Corvette</p></div>
+        <div class="project-overlay">
+          <p class="project-type">Short Film</p>
+          <h3 class="project-name">Black Corvette</h3>
+          <p class="project-desc">Aaron starts a YouTube channel, sparks a youth movement, gets too radical — and realises all he ever wanted was purpose.</p>
+        </div>
       </div>
+
       <div class="project-card">
-        <p class="project-type">TV / YouTube</p>
-        <h3 class="project-name">Tapped In</h3>
-        <p class="project-desc">An entertainment show covering film, music, fashion, tech, and gaming. Co-created with Spaceprogram. Launching on YouTube before going to broadcast.</p>
-        <div class="project-status"><span class="status-dot dev"></span><span style="color:var(--gray-text)">Pre-Production</span></div>
+        <div class="project-poster project-poster-adams-world"></div>
+        <div class="project-tint tint-adams-world"></div>
+        <div class="project-minimal"><p class="project-minimal-title">Adams World</p></div>
+        <div class="project-overlay">
+          <p class="project-type">Animated Series</p>
+          <h3 class="project-name">Adams World</h3>
+          <p class="project-desc">A narcissistic but witty kid in Avondale, Lusaka finds a remote that bends space and time. Chaos, heart, Zambian energy.</p>
+        </div>
       </div>
+
       <div class="project-card">
-        <p class="project-type">Short Film</p>
-        <h3 class="project-name">Black Corvette</h3>
-        <p class="project-desc">Aaron starts a YouTube channel, sparks a youth movement, gets too radical — and realises all he ever wanted was purpose.</p>
-        <div class="project-status"><span class="status-dot dev"></span><span style="color:var(--gray-text)">Development</span></div>
+        <div class="project-poster project-poster-blazing"></div>
+        <div class="project-tint tint-adams-world"></div>
+        <div class="project-minimal"><p class="project-minimal-title">Blazing Red</p></div>
+        <div class="project-overlay">
+          <p class="project-type">Comic Series</p>
+          <h3 class="project-name">Blazing Red</h3>
+          <p class="project-desc">A high-energy superhero story where power, attitude and the supernatural collide. Urban fantasy, explosive action, blazing red.</p>
+        </div>
       </div>
+
       <div class="project-card">
-        <p class="project-type">Animated Series</p>
-        <h3 class="project-name">Adams World</h3>
-        <p class="project-desc">Adam is a narcissistic but witty kid in Avondale, Lusaka, who finds a remote that bends space and time. Chaos, heart, and a lot of Zambian energy.</p>
-        <div class="project-status"><span class="status-dot dev"></span><span style="color:var(--gray-text)">Development</span></div>
+        <div class="project-poster project-poster-fantasia"></div>
+        <div class="project-tint tint-adams-world"></div>
+        <div class="project-minimal"><p class="project-minimal-title">Blazing Red</p></div>
+        <div class="project-overlay">
+          <p class="project-type">Comic Series</p>
+          <h3 class="project-name">Fantasia</h3>
+          <p class="project-desc">A dreamlike journey where reality bends, imagination takes over, and the line between wonder and danger begins to disappear. Surreal, strange, cinematic.</p>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1095,6 +1238,25 @@
       idx = idx + 1 >= slides.length ? -1 : idx + 1;
       if (idx >= 0) slides[idx].classList.add('active');
     }, 4000);
+  })();
+</script>
+<script>
+  // Project card tap-to-reveal on touch devices — no hover, so a first
+  // tap reveals the poster's synopsis/tag/link instead of firing
+  // navigation blind; a second tap on an already-revealed card (the
+  // linked ones) then navigates normally.
+  (function () {
+    var isTouch = window.matchMedia('(hover: none)').matches;
+    if (!isTouch) return;
+    var cards = document.querySelectorAll('.project-card');
+    cards.forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (!card.classList.contains('revealed')) {
+          e.preventDefault();
+          card.classList.add('revealed');
+        }
+      });
+    });
   })();
 </script>
 <script>
