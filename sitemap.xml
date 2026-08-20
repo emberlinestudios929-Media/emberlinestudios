@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://emberlinestudios.ink/</loc>
   </url>
+
+  <url>
+    <loc>https://emberlinestudios.ink/studio.html</loc>
+  </url>
+
+  <url>
+    <loc>https://emberlinestudios.ink/creatives.html</loc>
+  </url>
+
+  <url>
+    <loc>https://emberlinestudios.ink/contact.html</loc>
+  </url>
+
+  <url>
+    <loc>https://emberlinestudios.ink/escaping-lusaka.html</loc>
+  </url>
+
+  <url>
+    <loc>https://emberlinestudios.ink/great-expectations.html</loc>
+  </url>
+
+  <url>
+    <loc>https://emberlinestudios.ink/moonlight.html</loc>
+  </url>
+
 </urlset>
