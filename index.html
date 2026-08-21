@@ -251,24 +251,34 @@
         );
     }
 
-    .emblem-art {
-      position: absolute;
-      width: min(72vw, 620px);
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      overflow: hidden;
+.emblem-art {
+  position: absolute;
+  width: min(68vw, 620px);
+  aspect-ratio: 819 / 1295;
 
-      opacity: 0.5;
+  opacity: 0.78;
 
-      filter:
-        saturate(0.95)
-        contrast(1.07);
+  -webkit-mask-image: url("emberline-emblem.png");
+  mask-image: url("emberline-emblem.png");
 
-      transition:
-        opacity 0.45s ease,
-        transform 0.45s ease,
-        filter 0.45s ease;
-    }
+  -webkit-mask-size: contain;
+  mask-size: contain;
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-position: center;
+  mask-position: center;
+
+  filter:
+    saturate(1.05)
+    contrast(1.08)
+    drop-shadow(0 0 22px rgba(245,166,35,0.3));
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
 
     .emblem-stage:hover .emblem-art {
       opacity: 0.64;
@@ -624,11 +634,11 @@
       </div>
 
 
-      <img
+      <!-- <img
         src="emberline-emblem.png"
         alt="Emberline Studios flame emblem"
         class="emblem-outline"
-      >
+      > -->
 
     </div>
 
