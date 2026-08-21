@@ -1,320 +1,920 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emberline Studios</title>
-<meta name="description" content="Emberline Studios — a Zambian creative studio and design house. Enter the studio for comics, animation and film, or work with us for branding and design services.">
-<link rel="canonical" href="https://emberlinestudios.ink/">
-<meta property="og:title" content="Emberline Studios">
-<meta property="og:description" content="Emberline Studios — a Zambian creative studio and design house. Comics, animation and film, plus branding and design services.">
-<meta property="og:image" content="https://emberlinestudios.ink/favicon-512x512.png">
-<meta property="og:url" content="https://emberlinestudios.ink/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Emberline Studios Limited",
-  "alternateName": "Emberline Studios",
-  "url": "https://emberlinestudios.ink/",
-  "logo": "https://emberlinestudios.ink/favicon-512x512.png",
-  "description": "Emberline Studios is a Zambian creative studio and design house producing comics, animation and film, alongside branding and design services.",
-  "foundingLocation": {
-    "@type": "Place",
-    "name": "Zambia"
-  },
-  "sameAs": [
-    "https://www.instagram.com/emberlinestudios_comics/"
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Emberline Studios",
-  "alternateName": "Emberline Studios Limited",
-  "url": "https://emberlinestudios.ink/"
-}
-</script>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --black: #0a0a0a;
-    --ember: #F5A623;
-    --deep-red: #8B0000;
-    --crimson: #C0392B;
-    --white: #FFFFFF;
-    --off-white: #F0EDE8;
-    --gray: #1a1a1a;
-    --gray-mid: #2a2a2a;
-    --gray-text: #888880;
-    --steel: #3A6EA5;
-    --steel-deep: #1F3A5F;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Crimson Pro', serif;
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
-  .wrap {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  header {
-    text-align: center;
-    padding: 3.5rem 1.5rem 2rem;
-  }
-  .mark {
-    font-size: 1.6rem;
-  }
-  h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.2rem, 6vw, 3.4rem);
-    letter-spacing: 0.06em;
-    margin-top: 0.4rem;
-  }
-  .tagline {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gray-text);
-    margin-top: 0.6rem;
-  }
-  main.split {
-    flex: 1;
-    display: flex;
-    min-height: 480px;
-  }
-  @media (max-width: 720px) {
-    main.split { flex-direction: column; min-height: unset; }
-    .panel { min-height: 46vh; }
-  }
-  .panel {
-    position: relative;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: var(--white);
-    overflow: hidden;
-    cursor: pointer;
-    border-right: 1px solid rgba(255,255,255,0.08);
-  }
-  @media (max-width: 720px) {
-    .panel { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  }
-  .panel:last-child { border-right: none; border-bottom: none; }
+  <meta charset="UTF-8">
 
-  .bgcarousel {
-  position: absolute;
-  inset: 0;
-  opacity: 0.28;
-  transition: opacity 0.6s ease;
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-.panel:hover .bgcarousel {
-  opacity: 0.55;
-}
-  .slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    background-size: cover;
-    background-position: center;
-    transition: opacity 1s ease;
-  }
-  .slide.active { opacity: 1; }
+  <title>Emberline Studios</title>
 
-  /* Placeholder art — swap these background-colors for real cover/flyer
-     images (background-image: url(...)) when wiring up the final assets */
-  #studio-panel .slide:nth-child(1) { background-image: url("images/adams-world.png"); }
-  #studio-panel .slide:nth-child(2) { background-image: url("images/blazing.png"); }
-  #studio-panel .slide:nth-child(3) { background-image: url("images/escaping.png"); }
-  #studio-panel .slide:nth-child(4) { background-image: url("images/fantasia.png"); }
-  #studio-panel .slide:nth-child(5) { background-image: url("images/great.png"); }
-  #studio-panel .slide:nth-child(6) { background-image: url("images/moonlight.png"); }
+  <meta
+    name="description"
+    content="Emberline Studios — a Zambian creative studio and design house. Enter the studio for comics, animation and film, or work with us for branding and design services."
+  >
 
-  #creatives-panel .slide:nth-child(1) { background-image: url("c-images/axis-collateral.png"); }
-  #creatives-panel .slide:nth-child(2) { background-image: url("c-images/axis-logo.png"); }
-  #creatives-panel .slide:nth-child(3) { background-image: url("c-images/breast.png"); }
-  #creatives-panel .slide:nth-child(4) { background-image: url("c-images/crown.png"); }
-  #creatives-panel .slide:nth-child(5) { background-image: url("c-images/muvi.png"); }
-  #creatives-panel .slide:nth-child(6) { background-image: url("c-images/net-ad.png"); }
+  <link
+    rel="canonical"
+    href="https://emberlinestudios.ink/"
+  >
 
-  .panel::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.55));
-    z-index: 1;
-  }
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="Emberline Studios"
+  >
 
-  .panel-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 1.5rem;
-  }
-  .panel-eyebrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 0.6rem;
-  }
-  .panel-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    letter-spacing: 0.04em;
-  }
-  .panel-sub {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.72);
-    margin-top: 0.5rem;
-  }
-  .panel-tap-hint {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-top: 1.2rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .panel.revealed .panel-tap-hint { opacity: 1; }
-  @media (min-width: 721px) {
-    .panel-tap-hint { display: none; }
-  }
+  <meta
+    property="og:description"
+    content="Emberline Studios — a Zambian creative studio and design house. Comics, animation and film, plus branding and design services."
+  >
 
-  footer {
-    text-align: center;
-    padding: 1.2rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: var(--gray-text);
+  <meta
+    property="og:image"
+    content="https://emberlinestudios.ink/favicon-512x512.png"
+  >
+
+  <meta
+    property="og:url"
+    content="https://emberlinestudios.ink/"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:site_name"
+    content="Emberline Studios"
+  >
+
+  <!-- Twitter / social -->
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Emberline Studios"
+  >
+
+  <meta
+    name="twitter:description"
+    content="A Zambian creative studio building comics, animation, film and design."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://emberlinestudios.ink/favicon-512x512.png"
+  >
+
+  <!-- Favicons -->
+  <link
+    rel="icon"
+    href="/favicon.ico"
+    sizes="any"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/favicon-32x32.png"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/favicon-16x16.png"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/apple-touch-icon.png"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="/favicon-192x192.png"
+  >
+
+  <!-- Organization schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Emberline Studios Limited",
+    "alternateName": "Emberline Studios",
+    "url": "https://emberlinestudios.ink/",
+    "logo": "https://emberlinestudios.ink/favicon-512x512.png",
+    "description": "Emberline Studios is a Zambian creative studio and design house producing comics, animation and film, alongside branding and design services.",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Zambia"
+    },
+    "sameAs": [
+      "https://www.instagram.com/emberlinestudios_comics/"
+    ]
   }
-  .footer-social {
-  margin-top: 0.6rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-}
-.footer-social a { color: var(--ember); text-decoration: none; opacity: 0.8; transition: opacity 0.2s; }
-.footer-social a:hover { opacity: 1; }
-.footer-social span { color: rgba(255,255,255,0.2); }
-  
-</style>
+  </script>
+
+  <!-- Website schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Emberline Studios",
+    "alternateName": "Emberline Studios Limited",
+    "url": "https://emberlinestudios.ink/"
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --ember: #F5A623;
+      --deep-red: #8B0000;
+      --crimson: #C0392B;
+      --white: #FFFFFF;
+      --off-white: #F0EDE8;
+      --gray: #1a1a1a;
+      --gray-mid: #2a2a2a;
+      --gray-text: #888880;
+      --steel: #3A6EA5;
+      --steel-deep: #1F3A5F;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Crimson Pro', serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    header {
+      text-align: center;
+      padding: 2.2rem 1.5rem 1.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mark {
+      font-size: 1.4rem;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      letter-spacing: 0.07em;
+      margin-top: 0.35rem;
+    }
+
+    .tagline {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-text);
+      margin-top: 0.45rem;
+    }
+
+    /* MAIN HOMEPAGE STAGE */
+
+    .home-stage {
+      flex: 1;
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(320px, 0.85fr);
+      min-height: 620px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* EMBLEM / ART SIDE */
+
+    .emblem-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 620px;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(245,166,35,0.1),
+          transparent 46%
+        ),
+        linear-gradient(
+          135deg,
+          #080808,
+          #111111
+        );
+    }
+
+    .emblem-art {
+      position: absolute;
+      width: min(72vw, 620px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+
+      opacity: 0.5;
+
+      filter:
+        saturate(0.95)
+        contrast(1.07);
+
+      transition:
+        opacity 0.45s ease,
+        transform 0.45s ease,
+        filter 0.45s ease;
+    }
+
+    .emblem-stage:hover .emblem-art {
+      opacity: 0.64;
+      transform: scale(1.025);
+
+      filter:
+        saturate(1.08)
+        contrast(1.08);
+    }
+
+    .emblem-slide {
+      position: absolute;
+      inset: 0;
+
+      opacity: 0;
+
+      background-size: cover;
+      background-position: center;
+
+      transition: opacity 1s ease;
+    }
+
+    .emblem-slide.active {
+      opacity: 1;
+    }
+
+    /*
+      Artwork currently uses your existing PNGs.
+      Later we can switch these paths to .webp.
+    */
+
+    .emblem-outline {
+      position: relative;
+      z-index: 2;
+
+      width: min(66vw, 560px);
+      max-width: 78%;
+
+      object-fit: contain;
+
+      filter:
+        drop-shadow(
+          0 0 18px rgba(245,166,35,0.32)
+        )
+        drop-shadow(
+          0 0 34px rgba(192,57,43,0.2)
+        );
+
+      pointer-events: none;
+    }
+
+    /* CHOICE SIDE */
+
+    .home-choices {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding:
+        4rem
+        clamp(2rem, 5vw, 5rem);
+
+      background:
+        linear-gradient(
+          180deg,
+          #0d0d0d,
+          #090909
+        );
+    }
+
+    .home-choice {
+      display: block;
+      position: relative;
+
+      text-decoration: none;
+      color: var(--white);
+
+      padding: 2.6rem 0;
+
+      transition:
+        transform 0.25s ease,
+        color 0.25s ease;
+    }
+
+    .home-choice:hover {
+      transform: translateX(8px);
+    }
+
+    .choice-label {
+      font-family: 'Space Mono', monospace;
+
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+
+      text-transform: uppercase;
+
+      color: var(--gray-text);
+
+      margin-bottom: 0.65rem;
+    }
+
+    .home-choice h2 {
+      font-family: 'Bebas Neue', sans-serif;
+
+      font-size:
+        clamp(3rem, 7vw, 5.6rem);
+
+      line-height: 0.92;
+
+      letter-spacing: 0.04em;
+
+      margin-bottom: 0.8rem;
+
+      transition:
+        color 0.25s ease;
+    }
+
+    .home-choice p {
+      font-size: 1rem;
+
+      color:
+        rgba(255,255,255,0.68);
+
+      margin-bottom: 1rem;
+    }
+
+    .home-choice span {
+      font-family: 'Space Mono', monospace;
+
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+
+      text-transform: uppercase;
+
+      color: var(--ember);
+    }
+
+    .choice-divider {
+      height: 1px;
+
+      background:
+        rgba(255,255,255,0.09);
+    }
+
+    .studio-choice:hover h2 {
+      color: var(--ember);
+    }
+
+    .creatives-choice:hover h2 {
+      color: var(--steel);
+    }
+
+    .creatives-choice span {
+      color: var(--steel);
+    }
+
+    /* CONTACT / SOCIAL */
+
+    footer {
+      text-align: center;
+
+      padding: 1.5rem;
+
+      font-family: 'Space Mono', monospace;
+
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+
+      color: var(--gray-text);
+    }
+
+    .footer-social {
+      margin-top: 0.75rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      color: var(--ember);
+
+      text-decoration: none;
+
+      opacity: 0.9;
+
+      font-size: 0.68rem;
+
+      transition:
+        opacity 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .footer-social a:hover {
+      opacity: 1;
+      color: var(--white);
+    }
+
+    .footer-social span {
+      color:
+        rgba(255,255,255,0.2);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 820px) {
+
+      header {
+        padding:
+          1.8rem
+          1.25rem
+          1.4rem;
+      }
+
+      .home-stage {
+        grid-template-columns: 1fr;
+        min-height: unset;
+      }
+
+      .emblem-stage {
+        min-height: 50vh;
+      }
+
+      .emblem-art {
+        width:
+          min(92vw, 560px);
+      }
+
+      .emblem-outline {
+        width:
+          min(82vw, 500px);
+
+        max-width: 82%;
+      }
+
+      .home-choices {
+        padding:
+          1rem
+          1.5rem
+          2rem;
+      }
+
+      .home-choice {
+        padding: 2rem 0;
+      }
+
+      .home-choice:hover {
+        transform: none;
+      }
+
+      .home-choice h2 {
+        font-size:
+          clamp(3rem, 16vw, 4.8rem);
+      }
+
+      .footer-social {
+        gap: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .emblem-stage {
+        min-height: 43vh;
+      }
+
+      .home-choice {
+        padding: 1.7rem 0;
+      }
+    }
+
+    /* ACCESSIBILITY */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+  </style>
+
 </head>
+
 <body>
 
 <div class="wrap">
+
   <header>
-    <div class="mark">🔥</div>
-    <h1>Emberline Studios</h1>
-    <div class="tagline">Zambian manga is real</div>
+
+    <div class="mark">
+      🔥
+    </div>
+
+    <h1>
+      Emberline Studios
+    </h1>
+
+    <div class="tagline">
+      Zambian manga is real
+    </div>
+
   </header>
 
-  <main class="split">
-    <a href="studio.html" class="panel" id="studio-panel">
-      <div class="bgcarousel">
-        <div class="slide active"></div>
-        <div class="slide"></div>
-        <div class="slide"></div>
-        <div class="slide"></div>
-        <div class="slide"></div>
-        <div class="slide"></div>
-      </div>
-      <div class="panel-content">
-        <div class="panel-eyebrow">Comics · Animation · Film</div>
-        <div class="panel-title">Studio</div>
-        <div class="panel-sub">Moonlight, Escaping Lusaka &amp; the worlds we're building</div>
-      </div>
-    </a>
 
-    <a href="creatives.html" class="panel" id="creatives-panel">
-      <div class="bgcarousel">
-        <div class="slide active"></div>
-        <div class="slide"></div>
-        <div class="slide"></div>
-        <div class="slide"></div>
-        <div class="slide"></div>
-        <div class="slide"></div>
+  <main class="home-stage">
+
+    <!-- EMBERLINE EMBLEM / ART -->
+
+    <div class="emblem-stage">
+
+      <div
+        class="emblem-art"
+        id="emblem-art"
+      >
+
+        <div
+          class="emblem-slide active"
+          style="background-image:url('images/escaping.png')"
+        ></div>
+
+        <div
+          class="emblem-slide"
+          style="background-image:url('images/moonlight.png')"
+        ></div>
+
+        <div
+          class="emblem-slide"
+          style="background-image:url('images/blazing.png')"
+        ></div>
+
+        <div
+          class="emblem-slide"
+          style="background-image:url('c-images/axis-collateral.png')"
+        ></div>
+
+        <div
+          class="emblem-slide"
+          style="background-image:url('c-images/crown.png')"
+        ></div>
+
+        <div
+          class="emblem-slide"
+          style="background-image:url('c-images/muvi.png')"
+        ></div>
+
       </div>
-      <div class="panel-content">
-        <div class="panel-eyebrow">Branding · Design · Print</div>
-        <div class="panel-title">Creatives</div>
-        <div class="panel-sub">Design work for brands, businesses &amp; organisations</div>
-      </div>
-    </a>
+
+
+      <img
+        src="favicon-512x512.png"
+        alt="Emberline Studios flame emblem"
+        class="emblem-outline"
+      >
+
+    </div>
+
+
+    <!-- SITE ENTRANCES -->
+
+    <div class="home-choices">
+
+      <a
+        href="studio.html"
+        class="home-choice studio-choice"
+        data-mode="studio"
+      >
+
+        <div class="choice-label">
+          Original Worlds
+        </div>
+
+        <h2>
+          Studio
+        </h2>
+
+        <p>
+          Comics · Animation · Film
+        </p>
+
+        <span>
+          Enter Studio →
+        </span>
+
+      </a>
+
+
+      <div class="choice-divider"></div>
+
+
+      <a
+        href="creatives.html"
+        class="home-choice creatives-choice"
+        data-mode="creatives"
+      >
+
+        <div class="choice-label">
+          Design Services
+        </div>
+
+        <h2>
+          Creatives
+        </h2>
+
+        <p>
+          Branding · Design · Print
+        </p>
+
+        <span>
+          Enter Creatives →
+        </span>
+
+      </a>
+
+    </div>
+
   </main>
 
+
   <footer>
-  &copy; 2026 Emberline Studios Limited. Registered in Zambia.
-  <div class="footer-social">
-    <a href="https://wa.me/260963091467" target="_blank" rel="noopener">WhatsApp</a>
-    <span>&middot;</span>
-    <a href="https://www.instagram.com/emberlinestudios_comics/" target="_blank" rel="noopener">Instagram</a>
-  </div>
-</footer>
+
+    &copy; 2026 Emberline Studios Limited.
+    Registered in Zambia.
+
+    <div class="footer-social">
+
+      <a
+        href="https://wa.me/260963091467"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
+
+      <span>
+        &middot;
+      </span>
+
+      <a
+        href="https://www.instagram.com/emberlinestudios_comics/"
+        target="_blank"
+        rel="noopener"
+      >
+        Instagram
+      </a>
+
+    </div>
+
+  </footer>
+
 </div>
+
 
 <script>
 (function () {
-  var isTouch = window.matchMedia('(hover: none)').matches;
-  var panels = document.querySelectorAll('.panel');
 
-  panels.forEach(function (panel) {
-    var slides = panel.querySelectorAll('.slide');
-    var idx = 0;
-    var timer = null;
+  const slides =
+    Array.from(
+      document.querySelectorAll(
+        '.emblem-slide'
+      )
+    );
 
-    function startCycle() {
-      stopCycle();
-      timer = setInterval(function () {
-        slides[idx].classList.remove('active');
-        idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('active');
-      }, 1400);
+  const studioChoice =
+    document.querySelector(
+      '.studio-choice'
+    );
+
+  const creativesChoice =
+    document.querySelector(
+      '.creatives-choice'
+    );
+
+  let currentIndex = 0;
+  let timer = null;
+
+  /*
+    Slides 0–2 = Studio
+    Slides 3–5 = Creatives
+  */
+
+  const groups = {
+
+    studio: [
+      0,
+      1,
+      2
+    ],
+
+    creatives: [
+      3,
+      4,
+      5
+    ]
+
+  };
+
+
+  function showSlide(index) {
+
+    slides.forEach(function (slide) {
+      slide.classList.remove(
+        'active'
+      );
+    });
+
+    if (slides[index]) {
+
+      slides[index].classList.add(
+        'active'
+      );
+
+      currentIndex = index;
+
     }
-    function stopCycle() {
-      if (timer) clearInterval(timer);
+
+  }
+
+
+  function startSequence(indices) {
+
+    stopSequence();
+
+    let position = 0;
+
+    showSlide(
+      indices[position]
+    );
+
+    timer =
+      setInterval(
+        function () {
+
+          position =
+            (position + 1)
+            % indices.length;
+
+          showSlide(
+            indices[position]
+          );
+
+        },
+        1800
+      );
+
+  }
+
+
+  function startAllSlides() {
+
+    stopSequence();
+
+    timer =
+      setInterval(
+        function () {
+
+          currentIndex =
+            (currentIndex + 1)
+            % slides.length;
+
+          showSlide(
+            currentIndex
+          );
+
+        },
+        2000
+      );
+
+  }
+
+
+  function stopSequence() {
+
+    if (timer) {
+
+      clearInterval(timer);
+
       timer = null;
+
     }
 
-if (isTouch) {
-  startCycle();
-} else {
-  panel.addEventListener('mouseenter', startCycle);
-  panel.addEventListener('mouseleave', stopCycle);
-}
-      // Desktop click always navigates immediately — no interception needed.
-    }
-  });
+  }
+
+
+  /*
+    Desktop:
+    hovering Studio cycles Studio work.
+    hovering Creatives cycles Creatives work.
+  */
+
+  if (
+    window.matchMedia(
+      '(hover: hover)'
+    ).matches
+  ) {
+
+    studioChoice.addEventListener(
+      'mouseenter',
+      function () {
+        startSequence(
+          groups.studio
+        );
+      }
+    );
+
+    studioChoice.addEventListener(
+      'mouseleave',
+      startAllSlides
+    );
+
+
+    creativesChoice.addEventListener(
+      'mouseenter',
+      function () {
+        startSequence(
+          groups.creatives
+        );
+      }
+    );
+
+    creativesChoice.addEventListener(
+      'mouseleave',
+      startAllSlides
+    );
+
+  }
+
+
+  /*
+    Mobile:
+    no hover dependency.
+    Artwork simply cycles automatically.
+  */
+
+  startAllSlides();
+
 })();
 </script>
+
+
 </body>
+
 </html>
