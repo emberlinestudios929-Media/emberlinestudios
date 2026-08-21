@@ -127,15 +127,15 @@
   .panel:last-child { border-right: none; border-bottom: none; }
 
   .bgcarousel {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-  }
-  .panel.revealed .bgcarousel,
-  .panel:hover .bgcarousel {
-    opacity: 0.55;
-  }
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  transition: opacity 0.6s ease;
+}
+
+.panel:hover .bgcarousel {
+  opacity: 0.55;
+}
   .slide {
     position: absolute;
     inset: 0;
@@ -252,7 +252,6 @@
         <div class="panel-eyebrow">Comics · Animation · Film</div>
         <div class="panel-title">Studio</div>
         <div class="panel-sub">Moonlight, Escaping Lusaka &amp; the worlds we're building</div>
-        <div class="panel-tap-hint">Tap again to enter</div>
       </div>
     </a>
 
@@ -269,7 +268,6 @@
         <div class="panel-eyebrow">Branding · Design · Print</div>
         <div class="panel-title">Creatives</div>
         <div class="panel-sub">Design work for brands, businesses &amp; organisations</div>
-        <div class="panel-tap-hint">Tap again to enter</div>
       </div>
     </a>
   </main>
@@ -307,19 +305,12 @@
       timer = null;
     }
 
-    if (isTouch) {
-      // First tap: reveal the carousel and stop there.
-      // Second tap: let the link navigate as normal.
-      panel.addEventListener('click', function (e) {
-        if (!panel.classList.contains('revealed')) {
-          e.preventDefault();
-          panel.classList.add('revealed');
-          startCycle();
-        }
-      });
-    } else {
-      panel.addEventListener('mouseenter', startCycle);
-      panel.addEventListener('mouseleave', stopCycle);
+if (isTouch) {
+  startCycle();
+} else {
+  panel.addEventListener('mouseenter', startCycle);
+  panel.addEventListener('mouseleave', stopCycle);
+}
       // Desktop click always navigates immediately — no interception needed.
     }
   });
