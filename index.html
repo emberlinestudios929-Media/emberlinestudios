@@ -282,6 +282,20 @@
     opacity 0.45s ease,
 }
 
+    .emblem-art {
+  transition:
+    opacity 0.45s ease,
+    filter 0.45s ease;
+}
+
+.emblem-art.frame-pulse {
+  filter:
+    saturate(1.15)
+    contrast(1.1)
+    brightness(1.08)
+    drop-shadow(0 0 34px rgba(245,166,35,0.5));
+}
+
     /* Living Frame interaction states */
 
 .emblem-stage {
@@ -797,6 +811,11 @@
       )
     );
 
+  const emblemArt =
+  document.querySelector(
+    '.emblem-art'
+  );
+
   const studioChoice =
     document.querySelector(
       '.studio-choice'
@@ -841,23 +860,28 @@
 
   function showSlide(index) {
 
-    slides.forEach(function (slide) {
-      slide.classList.remove(
-        'active'
-      );
-    });
+  slides.forEach(function (slide) {
+    slide.classList.remove('active');
+  });
 
-    if (slides[index]) {
+  if (slides[index]) {
 
-      slides[index].classList.add(
-        'active'
-      );
+    slides[index].classList.add('active');
+    currentIndex = index;
 
-      currentIndex = index;
+    emblemArt.classList.remove('frame-pulse');
 
-    }
+    void emblemArt.offsetWidth;
+
+    emblemArt.classList.add('frame-pulse');
+
+    setTimeout(function () {
+      emblemArt.classList.remove('frame-pulse');
+    }, 420);
 
   }
+
+}
 
 
   function startSequence(indices) {
