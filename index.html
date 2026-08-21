@@ -282,6 +282,62 @@
     opacity 0.45s ease,
 }
 
+    /* Living Frame interaction states */
+
+.emblem-stage {
+  transition: background 0.6s ease;
+}
+
+/* Studio = warm ember glow */
+.emblem-stage.studio-mode {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(245,166,35,0.16),
+      transparent 52%
+    ),
+    linear-gradient(135deg, #080808, #111);
+}
+
+.emblem-stage.studio-mode .emblem-art {
+  filter:
+    saturate(1.12)
+    contrast(1.08)
+    drop-shadow(0 0 28px rgba(245,166,35,0.42));
+}
+
+/* Creatives = cooler steel glow */
+.emblem-stage.creatives-mode {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(58,110,165,0.18),
+      transparent 52%
+    ),
+    linear-gradient(135deg, #080808, #101216);
+}
+
+.emblem-stage.creatives-mode .emblem-art {
+  filter:
+    saturate(1.05)
+    contrast(1.08)
+    drop-shadow(0 0 28px rgba(58,110,165,0.42));
+}
+
+/* Tiny premium-feeling arrow movement */
+
+.home-choice span {
+  display: inline-block;
+  transition:
+    transform 0.25s ease,
+    letter-spacing 0.25s ease;
+}
+
+.home-choice:hover span {
+  transform: translateX(6px);
+  letter-spacing: 0.19em;
+}
+
     .emblem-slide {
       position: absolute;
       inset: 0;
@@ -751,6 +807,13 @@
       '.creatives-choice'
     );
 
+  const emblemStage =
+  document.querySelector(
+    '.emblem-stage'
+  );
+
+  
+
   let currentIndex = 0;
   let timer = null;
 
@@ -874,34 +937,42 @@
     ).matches
   ) {
 
-    studioChoice.addEventListener(
-      'mouseenter',
-      function () {
-        startSequence(
-          groups.studio
-        );
-      }
-    );
+studioChoice.addEventListener(
+  'mouseenter',
+  function () {
+    emblemStage.classList.add('studio-mode');
+    emblemStage.classList.remove('creatives-mode');
 
-    studioChoice.addEventListener(
-      'mouseleave',
-      startAllSlides
-    );
+    startSequence(groups.studio);
+  }
+);
+
+studioChoice.addEventListener(
+  'mouseleave',
+  function () {
+    emblemStage.classList.remove('studio-mode');
+    startAllSlides();
+  }
+);
 
 
-    creativesChoice.addEventListener(
-      'mouseenter',
-      function () {
-        startSequence(
-          groups.creatives
-        );
-      }
-    );
+creativesChoice.addEventListener(
+  'mouseenter',
+  function () {
+    emblemStage.classList.add('creatives-mode');
+    emblemStage.classList.remove('studio-mode');
 
-    creativesChoice.addEventListener(
-      'mouseleave',
-      startAllSlides
-    );
+    startSequence(groups.creatives);
+  }
+);
+
+creativesChoice.addEventListener(
+  'mouseleave',
+  function () {
+    emblemStage.classList.remove('creatives-mode');
+    startAllSlides();
+  }
+);
 
   }
 
